@@ -1,0 +1,14 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from src.core.config import settings
+from sqlalchemy.orm import Session
+engine = create_engine(settings.DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Dependency cho FastAPI
+def get_db():  
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
