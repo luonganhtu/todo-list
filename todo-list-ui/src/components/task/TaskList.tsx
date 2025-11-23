@@ -11,7 +11,7 @@ import RHFTextField from "../common/react-hook-form/RHFTextField";
 
 import TaskItem from "./TaskItem";
 import { useForm } from "react-hook-form";
-import axiosClient from "../../lib/axios";
+import axiosClient from "../../libs/axios";
 export interface Task {
   id: string;
   title: string;

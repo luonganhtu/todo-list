@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { House } from "lucide-react";
 import TaskList from "../../components/task/TaskList";
 import AddTask from "../../components/task/AddTask";
-import axiosClient from "../../lib/axios";
+import axiosClient from "../../libs/axios";
 export default function Task() {
   const [tasks, setTasks] = useState<any>([]);
   useEffect(() => {

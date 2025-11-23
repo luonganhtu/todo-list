@@ -5,8 +5,8 @@ import {
   type ReactNode,
   useEffect,
 } from "react";
-import axiosClient from "../lib/axios";
-import { setCookie, removeCookie } from "../lib/cookie";
+import axiosClient from "../libs/axios";
+import { setCookie, removeCookie } from "../libs/cookie";
 
 interface User {
   id: string;

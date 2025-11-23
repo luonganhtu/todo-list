@@ -8,7 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { PlusIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
-import axiosClient from "../../lib/axios";
+import axiosClient from "../../libs/axios";
 import { PRIORITY_OPTIONS } from "../../constants";
 interface TaskFormData {
   title: string;
