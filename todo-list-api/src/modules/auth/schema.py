@@ -2,7 +2,7 @@ from pydantic import BaseModel, EmailStr
 
 class UserCreate(BaseModel):
     username: str
-    email: EmailStr
+    email: str
     password: str
 
 class UserLogin(BaseModel):
@@ -12,7 +12,7 @@ class UserLogin(BaseModel):
 class UserResponse(BaseModel):
     id: int
     username: str
-    email: EmailStr
+    email: str
     is_active: bool
 
     class Config:
