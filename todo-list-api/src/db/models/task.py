@@ -7,7 +7,7 @@ class Task(Base):
     __tablename__ = "tasks"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String(50), unique=True, nullable=False)
+    title = Column(String(50), nullable=False)
     description = Column(String(120), nullable=False)
     completed = Column(Boolean, default=False)
     due_date = Column(DateTime, nullable=False)
