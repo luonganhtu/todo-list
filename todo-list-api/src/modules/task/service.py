@@ -28,7 +28,7 @@ class TaskService:
         completed: Optional[bool] = None,
         priority: Optional[str] = None,
         skip: int = 0,
-        limit: int = 100
+        limit: int = 10000
     ) -> List[Task]:
         query = db.query(Task).filter(Task.user_id == user.id)
         

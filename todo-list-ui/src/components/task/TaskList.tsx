@@ -198,38 +198,33 @@ export default function TaskList(props: any) {
       <div className="w-full flex flex-col gap-2 mb-4">
         <RHFTextField name="search" control={searchControl} label="Search..." />
       </div>
-      {filteredTasks && filteredTasks.length > 0 ? (
-        <div className="flex flex-col gap-2 ">
-          {filteredTasks.map((task: any) => {
-            const isExpanded = expandedTaskId === task.id;
-            return (
-              <TaskItem
-                key={task.id}
-                task={task}
-                isExpanded={isExpanded}
-                onToggleDetail={() => handleToggleDetail(task.id)}
-                onRemove={() => handleRemoveClick(task.id)}
-                onToggleComplete={() => handleToggleComplete(task.id)}
-                // onUpdate={(updatedTask: Task) => {
-                //   setTasks(
-                //     tasks.map((t: any) => (t.id === task.id ? updatedTask : t))
-                //   );
-                //   setExpandedTaskId(null);
-                // }}
-                onUpdate={async (updatedTask: Task) => {
-                  await handleUpdate(task.id, updatedTask);
-                  setExpandedTaskId(null);
-                }}
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <div className="flex flex-col gap-2 text-center">
-          <p className="text-gray-500">No tasks found</p>
-        </div>
-      )}
-
+      <div className="max-h-[370px] py-2 overflow-y-auto border border-gray-300 rounded-lg p-2">
+        {filteredTasks && filteredTasks.length > 0 ? (
+          <div className="flex flex-col gap-2 ">
+            {filteredTasks.map((task: any) => {
+              const isExpanded = expandedTaskId === task.id;
+              return (
+                <TaskItem
+                  key={task.id}
+                  task={task}
+                  isExpanded={isExpanded}
+                  onToggleDetail={() => handleToggleDetail(task.id)}
+                  onRemove={() => handleRemoveClick(task.id)}
+                  onToggleComplete={() => handleToggleComplete(task.id)}
+                  onUpdate={async (updatedTask: Task) => {
+                    await handleUpdate(task.id, updatedTask);
+                    setExpandedTaskId(null);
+                  }}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div className="flex flex-col gap-2 text-center">
+            <p className="text-gray-500">No tasks found</p>
+          </div>
+        )}
+      </div>
       {/* Bulk Action Section */}
       {selectedTaskIds.size > 0 && (
         <div className="mt-4 p-3 bg-gray-100 rounded-lg flex items-center justify-between">
