@@ -20,7 +20,6 @@ def create_task(
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Tạo task mới"""
     # Lấy user_id từ username
     user = db.query(User).filter(User.username == current_user).first()
     if not user:
@@ -38,7 +37,6 @@ def list_tasks(
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Lấy danh sách tasks với filter"""
     
     user = db.query(User).filter(User.username == current_user).first()
     if not user:
@@ -53,7 +51,6 @@ def get_task(
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Lấy task theo ID"""
     
     user = db.query(User).filter(User.username == current_user).first()
     if not user:
@@ -69,7 +66,6 @@ def update_task(
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Cập nhật task (single)"""
     
     user = db.query(User).filter(User.username == current_user).first()
     if not user:
@@ -84,7 +80,6 @@ def remove_task(
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Xóa task (single)"""
     
     user = db.query(User).filter(User.username == current_user).first()
     if not user:
@@ -99,7 +94,6 @@ def remove_tasks(
     current_user: str = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Xóa nhiều tasks"""
     
     user = db.query(User).filter(User.username == current_user).first()
     if not user:

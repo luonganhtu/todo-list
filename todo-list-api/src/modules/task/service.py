@@ -7,16 +7,7 @@ from src.db.models.user import User
 
 class TaskService:
     @staticmethod
-    def create_task(db: Session, task_data: TaskCreate, user: User) -> Task:
-        """Tạo task mới"""
-        # Kiểm tra title đã tồn tại (vì unique=True)
-        existing = db.query(Task).filter(Task.title == task_data.title).first()
-        if existing:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Task title already exists"
-            )
-        
+    def create_task(db: Session, task_data: TaskCreate, user: User) -> Task:    
         new_task = Task(
             title=task_data.title,
             description=task_data.description,
@@ -39,7 +30,6 @@ class TaskService:
         skip: int = 0,
         limit: int = 100
     ) -> List[Task]:
-        """Lấy danh sách tasks với filter"""
         query = db.query(Task).filter(Task.user_id == user.id)
         
         if completed is not None:
@@ -53,7 +43,6 @@ class TaskService:
 
     @staticmethod
     def get_task(db: Session, task_id: int, user: User) -> Task:
-        """Lấy task theo ID"""
         task = db.query(Task).filter(
             Task.id == task_id,
             Task.user_id == user.id
@@ -73,7 +62,6 @@ class TaskService:
         task_data: TaskUpdate, 
         user: User
     ) -> Task:
-        """Cập nhật task (single)"""
         task = db.query(Task).filter(
             Task.id == task_id,
             Task.user_id == user.id
@@ -109,7 +97,6 @@ class TaskService:
 
     @staticmethod
     def remove_task(db: Session, task_id: int, user: User) -> Task:
-        """Xóa task (single)"""
         task = db.query(Task).filter(
             Task.id == task_id,
             Task.user_id == user.id
@@ -131,7 +118,6 @@ class TaskService:
         task_ids: List[int], 
         user: User
     ) -> List[Task]:
-        """Xóa nhiều tasks"""
         tasks = db.query(Task).filter(
             Task.id.in_(task_ids),
             Task.user_id == user.id
